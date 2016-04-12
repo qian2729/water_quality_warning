@@ -1,0 +1,14 @@
+path = '../data/data_without_events.txt';
+no_event_data = load(path);
+path = '../data/data_with_low_events.txt';
+event_data = load(path);
+kFold = 3;
+% [train_data,train_label,~,~] = create_train_test_data(no_event_data,kFold );
+[train_data,train_label,test_data,test_label] = create_train_test_data(event_data,kFold );
+sensor_type = 6;
+net_name = sprintf('net%d.mat',sensor_type);
+net = load(net_name);
+[ train_features,train_labels ] = create_feature_of_dataset(train_data,train_label,net);
+[ test_features,test_labels ] = create_feature_of_dataset(test_data,test_label,net);
+dataset_name = sprintf('feature_dataset_%d.mat',sensor_type);
+save(dataset_name,'train_features','train_labels','test_features','test_labels');

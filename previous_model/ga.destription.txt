@@ -1,0 +1,28 @@
+2)function [x,endPop,bPop,traceInfo] = ga(bounds,evalFN,evalOps,startPop,opts,... 
+         termFN,termOps,selectFN,selectOps,xOverFNs,xOverOps,mutFNs,mutOps)--遗传
+
+算法函数 
+【输出参数】 
+    x--求得的最优解 
+    endPop--最终得到的种群 
+    bPop--最优种群的一个搜索轨迹 
+【输入参数】 
+    bounds--代表变量上下界的矩阵 
+    evalFN--适应度函数 
+    evalOps--传递给适应度函数的参数 
+    startPop-初始种群 
+    opts[epsilon prob_ops display]--opts(1:2)等同于initializega的options参数，第三
+
+个参数控制是否输出，一般为0。如[1e-6 1 0] 
+    termFN--终止函数的名称,如['maxGenTerm'] 
+    termOps--传递个终止函数的参数,如[100] 
+    selectFN--选择函数的名称,如['normGeomSelect'] 
+    selectOps--传递个选择函数的参数,如[0.08] 
+    xOverFNs--交叉函数名称表，以空格分开，如['arithXover heuristicXover
+
+simpleXover'] 
+    xOverOps--传递给交叉函数的参数表，如[2 0;2 3;2 0] 
+    mutFNs--变异函数表，如['boundaryMutation multiNonUnifMutation nonUnifMutation
+
+unifMutation'] 
+    mutOps--传递给交叉函数的参数表,如[4 0 0;6 100 3;4 100 3;4 0 0]
