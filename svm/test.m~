@@ -1,0 +1,29 @@
+clear;
+clc;
+err_dataset = load('err_dataset');
+err_train = cell2mat(err_dataset.err_events_train);
+err_train_label = err_dataset.events_flag_train;
+err_test = cell2mat(err_dataset.err_events_test);
+err_test_label = err_dataset.events_flag_test;
+
+tpr_cell = {}
+fpr_cell = {}
+for level = 0.1:0.1:5
+    tpr_ar
+    for c = 0.01:0.02:2
+        svm_struct = svmtrain(err_train,err_train_label,'KKTViolationLevel',0.3,'boxconstraint',2, 'kernel_function','rbf');
+        extimate = svmclassify(svm_struct,err_test);
+        subplot(211)
+        bar(extimate);
+        subplot(212)
+        bar(err_test_label);
+
+        conf = confusionmat(err_test,extimate);
+        tp = conf(1,1);
+        tn = conf(0,0);
+        fn = conf(1,0);
+        fp = conf(0,1);
+        tpr = tp / (tp + fn);
+        fpr = fp / (fp + tn);
+    end
+end

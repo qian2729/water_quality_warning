@@ -4,7 +4,7 @@ function [ features,labels ] = create_feature_of_dataset(data,labels,net)
     window_size = net.window_size;
     window_count = size(data,1) - window_size + 1;
     sensor_data = data(:,net.sensor_type);
-%     sensor_data = mapminmax('apply',sensor_data,net.ps);
+    sensor_data = mapminmax('apply',sensor_data,net.ps);
     window_features = cell(window_count,1);
     for i = 1:window_count
         if mod(i,100) == 0

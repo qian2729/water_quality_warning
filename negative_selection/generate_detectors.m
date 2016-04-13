@@ -1,4 +1,4 @@
-function [ detectors ] = generate_detectors( max_detectors, self_dataset,labels, min_dist )
+function [ detectors ] = generate_detectors( max_detectors, self_dataset, min_dist )
 %   生成检测器
 %   max_detectors: 检测器数量
 %   self_dataset: 无异常数据集
@@ -9,8 +9,8 @@ function [ detectors ] = generate_detectors( max_detectors, self_dataset,labels,
     detector_count = 0;
     while detector_count < max_detectors
        rand_detector = rand(1,feature_size);
-       if ~is_match( rand_detector,self_dataset,labels, min_dist) && ...
-            ~is_match(rand_detector,detectors, zeros(1,size(detectors,1)), min_dist)
+       if ~is_match( rand_detector,self_dataset, min_dist) && ...
+            ~is_match(rand_detector,detectors, 0)
            detector_count = detector_count + 1;
            fprintf('detector count=%d\n',detector_count);
            detectors(detector_count,:) = rand_detector;
